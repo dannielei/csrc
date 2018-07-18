@@ -16,12 +16,14 @@ class weibo(object):
         list_cards=self.get_weibo(page)
         for card in list_cards:
             if card.get('card_type')==9:
-                url = card.get('scheme')
-                print(url)
                 date_str=card.get('mblog').get('created_at')
-                print(date_str)
+                print('时间',date_str)
                 text = card.get('mblog').get('text')
-                print(text)
+                if '【' in text:
+                    text =text.split('【')[1]
+                print('事件',text)
+                url = card.get('scheme')
+                print('链接',url)
 
     def get_products2(self,page):
         list_cards=self.get_weibo(page)
